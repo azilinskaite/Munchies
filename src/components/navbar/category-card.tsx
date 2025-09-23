@@ -10,10 +10,17 @@ export default function CategoryCard({
   imageUrl,
 }: CategoryCardProps) {
   return (
-    <div className="flex align-top border border-[var(--stroke)] rounded-lg shadow-custom-left shadow-custom-light">
+    <div
+      className="flex align-top border border-[var(--stroke)] rounded-lg bg-[var(--white)] shadow-custom-light"
+    >
       <h4 className="p-[0.75rem]">{categoryName}</h4>
       <div className="relative w-[5rem] h-[5rem]">
-        <Image src={imageUrl} alt={categoryName} fill style={{ objectFit: "cover" }} />
+        <Image
+          src={imageUrl}
+          alt={categoryName}
+          fill
+          style={{ objectFit: "cover" }}
+        />
       </div>
     </div>
   );

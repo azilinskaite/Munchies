@@ -18,8 +18,16 @@ body {
   font-family: var(--font-sans);
 }
 
+h3 {
+  @apply text-2xl;
+}
+
 h4 {
   @apply text-sm;
+}
+
+h5 {
+  @apply text-xs uppercase font-semibold text-[rgba(0,0,0,0.4)];
 }
 
 @layer utilities {
