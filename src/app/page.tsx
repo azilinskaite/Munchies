@@ -1,8 +1,7 @@
-import Header from "@/components/header/header";
-import Navbar from "@/components/navbar/navbar";
-import RestaurantsList from "@/components/restaurants-list/restaurantsList";
-import Sidebar from "@/components/sidebar/sidebar";
 import React from "react";
+import Navbar from "@/components/navbar/navbar";
+import RestaurantsList from "@/components/restaurants-list/restaurants-list";
+import Sidebar from "@/components/sidebar/sidebar";
 
 export default function Home() {
   return (

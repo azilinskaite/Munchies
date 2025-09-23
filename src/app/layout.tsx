@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="p-[2.5rem]">
         <Header />
         <main>
           {children}

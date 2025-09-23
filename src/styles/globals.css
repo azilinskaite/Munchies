@@ -17,3 +17,17 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans);
 }
+
+h4 {
+  @apply text-sm;
+}
+
+@layer utilities {
+  .shadow-custom-left {
+    box-shadow: -16px 9px 18px rgba(0, 0, 0, 0.1);
+  }
+  
+  .shadow-custom-light {
+    box-shadow: -4px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
