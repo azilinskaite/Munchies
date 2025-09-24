@@ -1,6 +1,6 @@
 const BASE_URL = "https://work-test-web-2024-eze6j4scpq-lz.a.run.app/api"
 
-export async function getRestaurants() {
+export async function getRestaurants(searchParams: Record<string, string>) {
   try {
     const res = await fetch(
       `${BASE_URL}/restaurants`, { cache: "no-store" }
