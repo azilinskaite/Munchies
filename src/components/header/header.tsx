@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="py-[1rem]">
       <Image
-        src="/assets/logo.svg"
+        src="/images/logo.svg"
         alt="Munchies Logo"
         width={273}
         height={40}

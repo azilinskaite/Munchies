@@ -16,6 +16,12 @@ body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
+  line-height: 125%;
+  letter-spacing: -0.03125rem;
+}
+
+h1 {
+  @apply text-[2.5rem];
 }
 
 h3 {
@@ -27,15 +33,21 @@ h4 {
 }
 
 h5 {
-  @apply text-xs uppercase font-semibold text-[rgba(0,0,0,0.4)];
+  @apply text-xs uppercase text-[rgba(0,0,0,0.4)];
 }
 
 @layer utilities {
   .shadow-custom-left {
     box-shadow: -16px 9px 18px rgba(0, 0, 0, 0.1);
   }
-  
+
   .shadow-custom-light {
     box-shadow: -4px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .border {
+    border-color: var(--stroke);
+    border-style: solid;
+    border-width: 0.6px;
   }
 }

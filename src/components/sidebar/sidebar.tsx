@@ -5,7 +5,7 @@ import FilterPrice from "./filter-price";
 
 export default function Sidebar() {
   return (
-    <aside className="flex flex-col p-[1.5rem] align-top gap-[2rem] border border-[var(--stroke)] rounded-lg bg-[var(--white)] shadow-custom-light">
+    <aside className="flex flex-col p-[1.5rem] mt-[1rem] align-top gap-[2rem] border border-[var(--stroke)] rounded-lg bg-[var(--white)] shadow-custom-light">
         <h3>Filter</h3>
         <FilterCategory />
         <FilterDelivery />

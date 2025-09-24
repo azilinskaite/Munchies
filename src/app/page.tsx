@@ -6,8 +6,11 @@ import Sidebar from "@/components/sidebar/sidebar";
 export default function Home() {
   return (
     <div className="flex">
-      <Sidebar />
-      <div>
+      <div className="min-w-[25%] md:max-w-[15%]">
+        <Sidebar />
+      </div>
+      
+      <div className="flex-1">
         <Navbar />
         <RestaurantsList />
       </div>
