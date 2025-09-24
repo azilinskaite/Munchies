@@ -4,6 +4,8 @@ import RestaurantsList from "@/components/restaurants-list/restaurants-list";
 import Sidebar from "@/components/sidebar/sidebar";
 
 export default function Home() {
+
+
   return (
     <div className="flex">
       <div className="min-w-[25%] md:max-w-[15%]">
@@ -12,7 +14,7 @@ export default function Home() {
       
       <div className="flex-1">
         <Navbar />
-        <RestaurantsList />
+        <RestaurantsList/>
       </div>
     </div>
   );
