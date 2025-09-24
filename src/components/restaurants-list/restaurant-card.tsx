@@ -1,5 +1,4 @@
 import React from "react";
-import Image from "next/image";
 import StatusBadge from "./status-badge";
 import ArrowButton from "./arrow-button";
 
@@ -26,7 +25,7 @@ export default function RestaurantCard({
         <StatusBadge status="Open" color="--green" />
         <StatusBadge status="Closed" color="--black" />
       </div>
-      <div className="flex justify-between justify-self-end items-top">
+      <div className="flex justify-between justify-self-end items-top gap-x-[1rem]">
         <h3 className="mb-0">{restaurantName}</h3>
         <ArrowButton />
       </div>
