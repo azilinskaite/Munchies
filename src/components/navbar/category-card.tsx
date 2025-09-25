@@ -3,15 +3,21 @@ import Image from "next/image";
 interface CategoryCardProps {
   categoryName: string;
   imageUrl: string;
+  onClick?: () => void;
+  isSelected?: boolean;
 }
 
 export default function CategoryCard({
   categoryName,
   imageUrl,
+  onClick,
+  isSelected
 }: CategoryCardProps) {
   return (
-    <div
-      className="flex align-top border border-[var(--stroke)] rounded-lg bg-[var(--white)] shadow-custom-light"
+    <button
+    onClick={onClick}
+      className={`flex items-center border rounded-lg shadow-custom-light transition duration-300 hover:scale-[1.02]
+        ${isSelected ? "border-selected" : "border-[var(--stroke)] bg-[var(--white)]"}`}
     >
       <h4 className="p-[0.75rem]">{categoryName}</h4>
       <div className="relative w-[5rem] h-[5rem]">
@@ -22,6 +28,6 @@ export default function CategoryCard({
           style={{ objectFit: "cover" }}
         />
       </div>
-    </div>
+    </button>
   );
 }
