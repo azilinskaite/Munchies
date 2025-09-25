@@ -1,7 +1,10 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import RestaurantCard from "./restaurant-card";
 
-export default async function RestaurantsList({ initialRestaurants }: { initialRestaurants: any }) {
+export default function RestaurantsList({ initialRestaurants }: { initialRestaurants: any }) {
+
+  const [restaurants, setRestaurants] = useState(initialRestaurants);
 
   return (
     <section className="p-[1rem] w-full">

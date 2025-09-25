@@ -10,7 +10,7 @@ export default function CategoryCard({
   imageUrl,
 }: CategoryCardProps) {
   return (
-    <div
+    <button
       className="flex align-top border border-[var(--stroke)] rounded-lg bg-[var(--white)] shadow-custom-light"
     >
       <h4 className="p-[0.75rem]">{categoryName}</h4>
@@ -22,6 +22,6 @@ export default function CategoryCard({
           style={{ objectFit: "cover" }}
         />
       </div>
-    </div>
+    </button>
   );
 }
