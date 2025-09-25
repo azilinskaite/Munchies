@@ -1,7 +1,7 @@
 import React from "react";
 import FilterButton from "./filter-button";
 
-export default function FilterDelivery() {
+export default function FilterSection() {
   return (
     <div className="flex flex-col gap-[0.625rem]">
         <h5 className="mb-[0.375rem]">Delivery time</h5>
