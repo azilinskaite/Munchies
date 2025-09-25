@@ -4,7 +4,7 @@ import { useFilters } from "@/utils/hooks/FiltersContext";
 import { getRestaurantFilters } from "@/utils/api/restaurants";
 import FilterButton from "./filter-button";
 
-export default function FilterCategory() {
+export default function FilterCategory({ label }: { label: string }) {
 
   const { selectedFilters, setSelectedFilters } = useFilters();
   const [categories, setCategories] = useState<any[]>([]);
@@ -33,7 +33,7 @@ export default function FilterCategory() {
         {categories.map((filter: any) => (
                 <FilterButton
                   key={filter.id}
-                  categoryName={filter.name}
+                  label={filter.name}
                   onClick={() => handleCategoryToggle(filter.id)}
                   isSelected={selectedFilters.includes(filter.id)}
                   // response has to be a boolean

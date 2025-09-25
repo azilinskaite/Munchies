@@ -22,6 +22,23 @@ export async function getRestaurants(params?: Record<string, string>) {
   }
 }
 
+export async function getPriceRangeById(id: string) {
+  try {
+    const res = await fetch(`${BASE_URL}/api/price-range/${id}`, {
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
+    return await res.json();
+  } catch (error: any) {
+    console.error("Fetch Error:", error.message || error);
+    throw error;
+  }
+}
+
+// export async function getDeliveryTimes() {
+//   return getRestaurants(restaurants.delivery_time_minutes);
+// }
+
 // export async function getOpenRestaurants() {
 //   return getRestaurants({ openNow: true });
 // }
