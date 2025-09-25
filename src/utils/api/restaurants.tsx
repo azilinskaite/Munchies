@@ -1,15 +1,16 @@
 const BASE_URL = "https://work-test-web-2024-eze6j4scpq-lz.a.run.app/api"
 
-export async function getRestaurants(searchParams: Record<string, string>) {
+export async function getRestaurants(params?: Record<string, string>) {
   try {
-    const res = await fetch(
-      `${BASE_URL}/restaurants`, { cache: "no-store" }
+    const res = await fetch(`${BASE_URL}/restaurants`, { cache: "no-store" }
     )
+
     if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`)
+      throw new Error(`HTTP error! Status: ${res.status}`);
     }
+
     const data = await res.json()
-    return { data }
+    return data.restaurants;
     
   } catch (error) {
     if (error instanceof Error) {
@@ -20,6 +21,10 @@ export async function getRestaurants(searchParams: Record<string, string>) {
     throw error
   }
 }
+
+// export async function getOpenRestaurants() {
+//   return getRestaurants({ openNow: true });
+// }
 
 export async function getRestaurantFilters() {
   try {
@@ -41,6 +46,8 @@ export async function getRestaurantFilters() {
     throw error
   }
 }
+
+
 
 
 

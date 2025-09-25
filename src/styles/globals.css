@@ -50,4 +50,9 @@ h5 {
     border-style: solid;
     border-width: 0.6px;
   }
+
+  .hover {
+    transform: scale(1.02);
+    transition-duration: 300ms;
+  }
 }
