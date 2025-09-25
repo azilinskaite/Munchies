@@ -52,9 +52,10 @@ h5 {
   }
 
   .border-selected {
-    border-color: var(--green);
+    border-color: var(--black);
+    background-color: var(--white);
     border-style: solid;
-    border-width: 1px;
+    border-width: 0.6px;
   }
 
   .hover {
