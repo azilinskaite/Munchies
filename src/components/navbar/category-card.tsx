@@ -17,7 +17,7 @@ export default function CategoryCard({
     <button
     onClick={onClick}
       className={`flex items-center border rounded-lg shadow-custom-light transition duration-300 hover:scale-[1.02]
-        ${isSelected ? "border-[var(--green)] bg-[var(--green)]" : "border-[var(--stroke)] bg-[var(--white)]"}`}
+        ${isSelected ? "border-selected" : "border-[var(--stroke)] bg-[var(--white)]"}`}
     >
       <h4 className="p-[0.75rem]">{categoryName}</h4>
       <div className="relative w-[5rem] h-[5rem]">

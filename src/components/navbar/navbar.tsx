@@ -22,7 +22,8 @@ function handleCategorySelect(categoryId: string) {
           categoryName={filter.name}
           imageUrl={filter.image_url}
           onClick={() => handleCategorySelect(filter.id)}
-          isSelected={selectedFilters === filter.id}
+          isSelected={selectedFilters[0] === filter.id}
+          // response has to be a boolean
         />
       ))}
     </nav>
