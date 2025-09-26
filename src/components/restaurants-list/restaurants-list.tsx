@@ -1,7 +1,7 @@
 "use client";
 import { useFilters } from "@/utils/hooks/FiltersContext";
 import React, { useState, useEffect } from "react";
-import { getRestaurants } from "@/utils/api/restaurants";
+import { getRestaurantOpenStatus, getRestaurants } from "@/utils/api/restaurants";
 import RestaurantCard from "./restaurant-card";
 import { applyFilters } from "@/utils/apply-filters";
 
@@ -14,24 +14,43 @@ type Restaurant = {
   price_range_id: string;
 };
 
+type RestaurantWithStatus = Restaurant & {
+  is_open: boolean;
+};
+
 export default function RestaurantsList({
   initialRestaurants,
 }: {
-  initialRestaurants: Restaurant[];
+  initialRestaurants: RestaurantWithStatus[];
 }) {
   const { selectedFilters } = useFilters();
-  const [restaurants, setRestaurants] = useState<Restaurant[]>(initialRestaurants);
+  const [restaurants, setRestaurants] = useState<RestaurantWithStatus[]>(initialRestaurants);
 
-  useEffect(() => {
+useEffect(() => {
+  async function fetchData() {
+    const allRestaurants = await getRestaurants();
+    // fetching all restaurants
 
-    async function fetchData() {
-      const allRestaurants = await getRestaurants();
-      const filtered = applyFilters(allRestaurants, selectedFilters);
-      setRestaurants(filtered);
+    // fetching open status for each restaurant
+    interface StatusResult extends Restaurant {
+      is_open: boolean;
     }
 
-    fetchData();
-  }, [selectedFilters]);
+    const statusResults: StatusResult[] = await Promise.all(
+      allRestaurants.map((r: Restaurant) =>
+      getRestaurantOpenStatus(r.id).then((is_open: boolean): StatusResult => ({
+        ...r,
+        is_open,
+      }))
+      )
+    );
+
+    const filtered = applyFilters(statusResults, selectedFilters);
+    setRestaurants(filtered);
+  }
+
+  fetchData();
+}, [selectedFilters]);
 
   return (
     <section className="p-[1rem] w-full">
@@ -42,9 +61,11 @@ export default function RestaurantsList({
             key={restaurant.id}
             restaurantName={restaurant.name}
             imageUrl={restaurant.image_url}
+            isOpen={restaurant.is_open}
+            deliveryTimeMinutes={restaurant.delivery_time_minutes}
           />
         ))}
-      </div>
+      </div>  
     </section>
   );
 }
