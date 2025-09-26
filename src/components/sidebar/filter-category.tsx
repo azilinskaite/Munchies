@@ -4,7 +4,7 @@ import { useFilters } from "@/utils/hooks/FiltersContext";
 import { getRestaurantFilters } from "@/utils/api/restaurants";
 import FilterButton from "./filter-button";
 
-export default function FilterCategory({ label }: { label: string }) {
+export default function FilterCategory({title} : {title: string}) {
 
   const { selectedFilters, setSelectedFilters } = useFilters();
   const [categories, setCategories] = useState<any[]>([]);
@@ -29,7 +29,7 @@ export default function FilterCategory({ label }: { label: string }) {
 
   return (
     <div className="flex flex-col gap-[0.625rem]">
-        <h5 className="mb-[0.375rem]">Food category</h5>
+        <h5 className="mb-[0.375rem]">{title}</h5>
         {categories.map((filter: any) => (
                 <FilterButton
                   key={filter.id}

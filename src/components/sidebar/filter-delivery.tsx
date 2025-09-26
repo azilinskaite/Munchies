@@ -19,7 +19,7 @@ const deliveryTimeRanges = [
   { id: "long", label: "1 hour+", match: (time: number) => time >= 60 },
 ];
 
-export default function FilterDelivery({ label }: { label: string }) {
+export default function FilterDelivery({title} : {title: string}) {
   const { selectedFilters, setSelectedFilters } = useFilters();
 
   function handleDeliveryToggle(deliveryId: string) {
@@ -32,7 +32,7 @@ export default function FilterDelivery({ label }: { label: string }) {
 
   return (
     <div className="flex flex-col gap-[0.625rem]">
-      <h5 className="mb-[0.375rem]">{label}</h5>
+      <h5 className="mb-[0.375rem]">{title}</h5>
       <div className="flex flex-wrap gap-[0.625rem]">
         {deliveryTimeRanges.map((range) => (
           <FilterButton

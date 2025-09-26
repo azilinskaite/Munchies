@@ -24,7 +24,7 @@ export async function getRestaurants(params?: Record<string, string>) {
 
 export async function getPriceRangeById(id: string) {
   try {
-    const res = await fetch(`${BASE_URL}/api/price-range/${id}`, {
+    const res = await fetch(`${BASE_URL}/price-range/${id}`, {
       cache: "no-store",
     });
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
