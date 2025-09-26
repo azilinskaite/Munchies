@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useFilters } from "@/utils/hooks/FiltersContext";
-import { getRestaurants } from "@/utils/api/restaurants";
 import FilterButton from "./filter-button";
 
 const deliveryTimeRanges = [
@@ -18,6 +17,11 @@ const deliveryTimeRanges = [
   },
   { id: "long", label: "1 hour+", match: (time: number) => time >= 60 },
 ];
+
+export function getDeliveryRangeLabel(time: number): string {
+  const range = deliveryTimeRanges.find(r => r.match(time));
+  return range ? range.label : `${time} min`;
+}
 
 export default function FilterDelivery({title} : {title: string}) {
   const { selectedFilters, setSelectedFilters } = useFilters();
