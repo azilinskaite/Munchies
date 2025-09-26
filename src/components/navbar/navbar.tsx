@@ -6,13 +6,12 @@ import { useFilters } from "@/utils/hooks/FiltersContext";
 export default function Navbar({ filters }: { filters: any }) {
   const { selectedFilters, setSelectedFilters } = useFilters();
 
-function handleCategorySelect(categoryId: string) {
-  setSelectedFilters((prev) => 
-    prev.length === 1 && prev[0] === categoryId
-  ? [] 
-  : [categoryId] 
-  );
-}
+  function handleCategorySelect(categoryId: string) {
+    const prefixedId = `cat-${categoryId}`;
+    setSelectedFilters((prev) =>
+      prev.length === 1 && prev[0] === prefixedId ? [] : [prefixedId]
+    );
+  }
 
   return (
     <nav className="flex p-[1rem] overflow-x-auto whitespace-nowrap gap-[0.625rem] max-w-[50rem]">
@@ -22,11 +21,9 @@ function handleCategorySelect(categoryId: string) {
           categoryName={filter.name}
           imageUrl={filter.image_url}
           onClick={() => handleCategorySelect(filter.id)}
-          isSelected={selectedFilters[0] === filter.id}
-          // response has to be a boolean
+          isSelected={selectedFilters[0] === `cat-${filter.id}`}
         />
       ))}
     </nav>
   );
 }
-

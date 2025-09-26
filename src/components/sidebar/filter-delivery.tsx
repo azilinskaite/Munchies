@@ -22,13 +22,13 @@ const deliveryTimeRanges = [
 export default function FilterDelivery({title} : {title: string}) {
   const { selectedFilters, setSelectedFilters } = useFilters();
 
-  function handleDeliveryToggle(deliveryId: string) {
-    setSelectedFilters((prev) =>
-      prev.includes(deliveryId)
-        ? prev.filter((f) => f !== deliveryId)
-        : [...prev, deliveryId]
-    );
-  }
+ function handleDeliveryToggle(deliveryId: string) {
+  setSelectedFilters((prev) =>
+    prev.includes(`deliv-${deliveryId}`)
+      ? prev.filter((f) => f !== `deliv-${deliveryId}`)
+      : [...prev, `deliv-${deliveryId}`]
+  );
+}
 
   return (
     <div className="flex flex-col gap-[0.625rem]">
@@ -39,14 +39,10 @@ export default function FilterDelivery({title} : {title: string}) {
             key={range.id}
             label={range.label}
             onClick={() => handleDeliveryToggle(range.id)}
-            isSelected={selectedFilters.includes(range.id)}
+            isSelected={selectedFilters.includes(`deliv-${range.id}`)}
           />
         ))}
       </div>
     </div>
   );
 }
-
-// take delivery time & price range from restaurant data
-// change categoryId to deliveryTime - restaurants.delivery_time_minutes
-// change categoryId to priceRange - restaurants.price_range_id and then fetch /price-range/{id} to get the actual price range
