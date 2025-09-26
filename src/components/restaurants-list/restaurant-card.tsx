@@ -28,22 +28,38 @@ const deliveryLabel = getDeliveryRangeLabel(deliveryTimeMinutes);
 
   return (
     <div
-      className="flex flex-col p-[1rem] gap-[6.875rem] border rounded-lg bg-[var(--white)] justify-between shadow-custom-light relative overflow-hidden"
+      className="flex flex-col p-[1rem] gap-[6.875rem] border rounded-lg bg-[var(--white)] justify-between shadow-custom-light relative overflow-hidden
+      "
       style={{
         backgroundImage: `url(${imageUrl})`,
         backgroundRepeat: "no-repeat",
         backgroundPosition: "top -2rem right -2rem",
         backgroundSize: "8.75rem 8.75rem",
+        backgroundClip: "padding-box"
       }}
+      
     >
       <div className="flex gap-x-[0.5rem] self-start">
         <StatusBadge {...statusProps} />
-        <StatusBadge status={deliveryLabel} />
+        {isOpen && <StatusBadge status={deliveryLabel} />}
       </div>
       <div className="flex justify-between justify-self-end items-top gap-x-[1rem]">
         <h3 className="mb-0">{restaurantName}</h3>
         <ArrowButton />
       </div>
+
+      {!isOpen && (
+        <div className="bg-[var(--white)]/80 absolute inset-0 flex items-center justify-center z-5">
+          <div className="border rounded-lg bg-[var(--off-white)] px-[0.75rem] py-[0.5rem] shadow-light">
+            <span className="text-[0.75rem] text-[var(--black)]">
+              Opens tomorrow at 12pm
+            </span>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
+
+// if closed, restaurant card should have opacity of 20%, not show statusBadge with time. Closed status badge should have z-index that keeps in on top of the layers. And there should be a div with border 0.25rem border radius and text "Open tomorroe at 12 pm"

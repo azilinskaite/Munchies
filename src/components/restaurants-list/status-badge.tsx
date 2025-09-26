@@ -8,7 +8,7 @@ interface StatusBadgeProps {
 export default function StatusBadge({ status, color }: StatusBadgeProps) {
 
   return (
-    <span className="flex items-center gap-x-[0.3rem] w-fit h-fit py-[0.5rem] px-[0.75rem] align-baseline border rounded-full bg-[var(--white)] shadow-custom-light">
+    <span className="flex items-center gap-x-[0.3rem] w-fit h-fit py-[0.5rem] px-[0.75rem] align-baseline border rounded-full bg-[var(--white)] shadow-custom-light z-10">
         {color && (
         <div
           className="w-[0.5rem] h-[0.5rem] rounded-full"
