@@ -6,14 +6,14 @@ import { getDeliveryRangeLabel } from "../sidebar/filter-delivery";
 interface RestaurantCardProps {
   restaurantName: string;
   imageUrl: string;
-  isOpen: boolean;
+  isOpen?: boolean;
   deliveryTimeMinutes: number;
 }
 
 export default function RestaurantCard({
   restaurantName,
   imageUrl,
-  isOpen,
+  isOpen = true,
   deliveryTimeMinutes,
 }: RestaurantCardProps) {
   const statusProps = getStatusProps(isOpen);
