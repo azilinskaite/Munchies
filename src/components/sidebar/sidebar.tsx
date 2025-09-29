@@ -15,6 +15,3 @@ export default function Sidebar() {
     </aside>
   );
 }
-
-  /* restaurants come with delivery time & price range right away.
-  Missing: food category filter */

@@ -12,10 +12,10 @@ export default async function HomePage() {
   return (
     <FiltersProvider>
       <div className="flex">
-        <div className="min-w-[25%] md:max-w-[15%]">
+        <div className="w-1/4 min-w-[10rem] max-w-[18rem]">
           <Sidebar />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 w-3/4">
           <Navbar filters={filters} />
           <RestaurantsList initialRestaurants={restaurants} />
         </div>

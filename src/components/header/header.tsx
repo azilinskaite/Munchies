@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="py-[1rem]">
+    <header className="py-[1rem] mb-[1.5rem]">
       <Image
         src="/images/logo.svg"
         alt="Munchies Logo"
