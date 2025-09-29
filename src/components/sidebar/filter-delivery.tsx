@@ -1,0 +1,52 @@
+"use client";
+import React, { useState, useEffect } from "react";
+import { useFilters } from "@/utils/hooks/FiltersContext";
+import FilterButton from "./filter-button";
+
+const deliveryTimeRanges = [
+  { id: "fast", label: "0-10 min", match: (time: number) => time < 10 },
+  {
+    id: "medium",
+    label: "10-30 min",
+    match: (time: number) => time >= 10 && time < 30,
+  },
+  {
+    id: "slow",
+    label: "30-60 min",
+    match: (time: number) => time >= 30 && time < 60,
+  },
+  { id: "long", label: "1 hour+", match: (time: number) => time >= 60 },
+];
+
+export function getDeliveryRangeLabel(time: number): string {
+  const range = deliveryTimeRanges.find(r => r.match(time));
+  return range ? range.label : `${time} min`;
+}
+
+export default function FilterDelivery({title} : {title: string}) {
+  const { selectedFilters, setSelectedFilters } = useFilters();
+
+ function handleDeliveryToggle(deliveryId: string) {
+  setSelectedFilters((prev) =>
+    prev.includes(`deliv-${deliveryId}`)
+      ? prev.filter((f) => f !== `deliv-${deliveryId}`)
+      : [...prev, `deliv-${deliveryId}`]
+  );
+}
+
+  return (
+    <div className="flex flex-col gap-[0.625rem]">
+      <h5 className="mb-[0.375rem]">{title}</h5>
+      <div className="flex flex-wrap gap-[0.625rem]">
+        {deliveryTimeRanges.map((range) => (
+          <FilterButton
+            key={range.id}
+            label={range.label}
+            onClick={() => handleDeliveryToggle(range.id)}
+            isSelected={selectedFilters.includes(`deliv-${range.id}`)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
