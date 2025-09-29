@@ -53,7 +53,7 @@ useEffect(() => {
 }, [selectedFilters]);
 
   return (
-    <section className="p-[1rem] w-full">
+    <section className="p-[1rem] lg:pr-[7.5rem] w-full">
       <h1 className="mb-[1rem] py-[1rem]">Restaurants</h1>
       <div className="grid grid-cols-1 gap-[1rem] py-[1rem] sm:grid-cols-2 lg:grid-cols-3">
         {restaurants.map((restaurant) => (

@@ -14,7 +14,8 @@ export default function Navbar({ filters }: { filters: any }) {
   }
 
   return (
-    <nav className="flex p-[1rem] overflow-x-auto whitespace-nowrap gap-[0.625rem] max-w-[50rem]">
+    <nav className="w-full ml-[1rem] whitespace-nowrap">
+      <div className="flex w-full py-[1rem] overflow-x-auto gap-[0.625rem]">
       {filters.data.filters.map((filter: any) => (
         <CategoryCard
           key={filter.id}
@@ -24,6 +25,7 @@ export default function Navbar({ filters }: { filters: any }) {
           isSelected={selectedFilters[0] === `cat-${filter.id}`}
         />
       ))}
+      </div>
     </nav>
   );
 }
