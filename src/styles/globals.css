@@ -6,6 +6,7 @@
   --off-white: #fafafa;
   --black: #000000;
   --green: #00703a;
+  --transparent-green: rgba(6, 118, 64, 0.15);
   --stroke: rgba(0, 0, 0, 0.1);
   --font-sans: "SF Pro Display", sans-serif;
   --color-background: var(--off-white);
@@ -40,9 +41,8 @@
 
 @layer utilities {
   .shadow-custom-light {
-    box-shadow:
-      -16px 9px 18px rgba(0, 0, 0, 0.01),
-      -4px 2px 10px rgba(0, 0, 0, 0.01); 
+    box-shadow: -16px 9px 18px rgba(0, 0, 0, 0.01),
+      -4px 2px 10px rgba(0, 0, 0, 0.01);
   }
 
   .border {
@@ -53,7 +53,8 @@
 
   .border-selected {
     border-color: var(--green);
-    background-color: var(--white);
+    background-color: var(--green);
+    color: white;
     border-style: solid;
     border-width: 0.8px;
   }

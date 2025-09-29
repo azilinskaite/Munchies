@@ -15,14 +15,12 @@ export default function FilterPrice({title} : {title: string}) {
 
   useEffect(() => {
     async function fetchPriceRanges() {
-      // Step 1: get restaurants to extract unique price_range_ids
       const restaurants = await getRestaurants();
 
       const uniqueIds: string[] = Array.from(
         new Set(restaurants.map((r: any) => r.price_range_id as string))
       );
 
-      // Step 2: fetch each price-range by ID
       const ranges = await Promise.all(uniqueIds.map((id) => getPriceRangeById(id)));
       setPriceRanges(ranges);
     }
@@ -54,5 +52,3 @@ export default function FilterPrice({title} : {title: string}) {
     </div>
   );
 }
-
-// priceRange - restaurants.price_range_id and then fetch /price-range/{id} to get the actual price range, displays 1, 2 or 3 dollar signs
