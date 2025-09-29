@@ -31,8 +31,6 @@ export function matchesOpenNow(r: any, selectedFilters: string[]): boolean {
   const openFilters = selectedFilters.filter((f) => f === "open-now");
   if (openFilters.length === 0) return true;
   return r.is_open === true; 
-  // need a separate call (`${BASE_URL}/open/{id} (where id is specific restaurant's)
-  // api gives boolean "is_open": false or true
 }
 
 export function applyFilters(restaurants: any[], selectedFilters: string[]) {
