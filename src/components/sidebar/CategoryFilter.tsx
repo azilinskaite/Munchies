@@ -3,15 +3,24 @@ import React, { useState, useEffect } from "react";
 import { useFilters } from "@/lib/hooks/filtersContext";
 import { getRestaurantFilters } from "@/lib/api/getRestaurants";
 import FilterButton from "./FilterButton";
+import FilterButtonSkeleton from "./FilterButtonSkeleton";
 
 export default function FilterCategory({ title }: { title: string }) {
   const { selectedFilters, setSelectedFilters } = useFilters();
   const [categories, setCategories] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchFilters() {
-      const response = await getRestaurantFilters();
-      setCategories(response.data.filters);
+      setLoading(true);
+      try {
+        const response = await getRestaurantFilters();
+        setCategories(response.data.filters);
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      } finally {
+        setLoading(false);
+      }
     }
     fetchFilters();
   }, []);
@@ -25,18 +34,28 @@ export default function FilterCategory({ title }: { title: string }) {
   }
 
   return (
-    <div className="hidden md:block flex flex-col">
+    <div className="hidden md:block flex flex-col min-h-32">
       <h5 className="mb-2">{title}</h5>
-      <div className="flex flex-col gap-2">
-      {categories.map((filter: any) => (
-        <FilterButton
-          key={filter.id}
-          label={filter.name}
-          onClick={() => handleCategoryToggle(filter.id)}
-          isSelected={selectedFilters.includes(`cat-${filter.id}`)}
-        />
-      ))}
-      </div>
+      {loading && (
+        <div className="flex flex-col gap-2">
+          {Array.from({ length: 4 }).map((_, index) => (
+            <FilterButtonSkeleton key={index} />
+          ))}
+        </div>
+      )}
+
+      {!loading && (
+        <div className="flex flex-col gap-2">
+          {categories.map((filter: any) => (
+            <FilterButton
+              key={filter.id}
+              label={filter.name}
+              onClick={() => handleCategoryToggle(filter.id)}
+              isSelected={selectedFilters.includes(`cat-${filter.id}`)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
