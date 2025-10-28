@@ -14,8 +14,8 @@ export default function Navbar({ filters }: { filters: any }) {
   }
 
   return (
-    <nav className="w-full ml-[1rem] whitespace-nowrap">
-      <div className="flex w-full py-[1rem] overflow-x-auto gap-[0.625rem]">
+    <nav className="w-full md:ml-4 whitespace-nowrap">
+      <div className="flex w-full py-4 overflow-x-auto gap-[0.625rem]">
       {filters.data.filters.map((filter: any) => (
         <CategoryCard
           key={filter.id}

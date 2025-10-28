@@ -28,7 +28,7 @@ const deliveryLabel = getDeliveryRangeLabel(deliveryTimeMinutes);
 
   return (
     <div
-      className="flex flex-col p-[1rem] gap-[6.875rem] border rounded-lg bg-[var(--white)] justify-between shadow-custom-light relative overflow-hidden
+      className="flex flex-col p-4 gap-[6.875rem] border rounded-lg bg-[var(--white)] justify-between shadow-custom-light relative overflow-hidden
       "
       style={{
         backgroundImage: `url(${imageUrl})`,

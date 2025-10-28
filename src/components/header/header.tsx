@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Header() {
   return (
-    <header className="py-2 md:py-4 md:mb-6">
+    <header className="pt-6 md:py-4 mb-6">
       <div className="relative w-[167px] h-[24px] md:w-[273px] md:h-[40px]">
     <Image
       src="/images/logo.svg"

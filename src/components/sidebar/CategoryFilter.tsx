@@ -25,7 +25,7 @@ export default function FilterCategory({ title }: { title: string }) {
   }
 
   return (
-    <div className="flex flex-col gap-[0.625rem]">
+    <div className="hidden md:block flex flex-col gap-[0.625rem]">
       <h5 className="mb-[0.375rem]">{title}</h5>
       {categories.map((filter: any) => (
         <FilterButton

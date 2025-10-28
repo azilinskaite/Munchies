@@ -15,7 +15,7 @@ export default async function HomePage() {
         <div className="w-[100%] md:w-1/4 md:min-w-[10rem] md:max-w-[18rem]">
           <Sidebar />
         </div>
-        <div className="flex-1 w-3/4">
+        <div className="flex-1 md:w-3/4">
           <Navbar filters={filters} />
           <RestaurantsList initialRestaurants={restaurants} />
         </div>

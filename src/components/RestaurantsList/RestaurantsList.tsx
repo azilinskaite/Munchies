@@ -61,11 +61,10 @@ export default function RestaurantsList({
   }, [selectedFilters]);
 
   return (
-    <section className="p-[1rem] lg:pr-[7.5rem] w-full">
-      <h1 className="mb-[1rem] py-[1rem]">Restaurants</h1>
-
+    <section className="md:p-4 lg:pr-[7.5rem] w-full">
+      <h1 className="mb-4 pt-4 md:pb-4">Restaurants</h1>
       {!error && (
-        <div className="grid grid-cols-1 gap-[1rem] py-[1rem] sm:grid-cols-2 lg:grid-cols-3">
+        <div className="w-full grid grid-cols-1 gap-4 md:py-4 sm:grid-cols-2 lg:grid-cols-3">
           {restaurants.map((restaurant) => (
             <RestaurantCard
               key={restaurant.id}
