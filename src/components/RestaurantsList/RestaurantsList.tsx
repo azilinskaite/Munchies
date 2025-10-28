@@ -7,6 +7,7 @@ import {
 } from "@/lib/api/getRestaurants";
 import RestaurantCard from "./RestaurantCard";
 import { applyFilters } from "@/lib/filters/applyFilters";
+import RestaurantCardSkeleton from "./RestaurantCardSkeleton";
 
 type Restaurant = {
   id: string;
@@ -29,11 +30,13 @@ export default function RestaurantsList({
   const { selectedFilters } = useFilters();
   const [restaurants, setRestaurants] =
     useState<RestaurantWithStatus[]>(initialRestaurants);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchData() {
       setError(null);
+      setLoading(true);
 
       try {
         const allRestaurants = await getRestaurants();
@@ -52,9 +55,11 @@ export default function RestaurantsList({
       } catch (err: any) {
         console.error("Error fetching restaurants:", err);
         setError(
-          "😟 Sorry, we couldn't load restaurants at the moment. Please try again later."
+          "Sorry, we couldn't load restaurants at the moment. Please try again later."
         );
-      } 
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchData();
@@ -63,7 +68,16 @@ export default function RestaurantsList({
   return (
     <section className="md:p-4 lg:pr-[7.5rem] w-full">
       <h1 className="mb-4 pt-4 md:pb-4">Restaurants</h1>
-      {!error && (
+
+      {loading && (
+        <div className="w-full grid grid-cols-1 gap-4 md:py-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <RestaurantCardSkeleton key={i} />
+          ))}
+        </div>
+      )}
+
+      {!loading && !error && (
         <div className="w-full grid grid-cols-1 gap-4 md:py-4 sm:grid-cols-2 lg:grid-cols-3">
           {restaurants.map((restaurant) => (
             <RestaurantCard
@@ -76,6 +90,11 @@ export default function RestaurantsList({
           ))}
         </div>
       )}
+
+      {!loading && !error && restaurants.length === 0 && (
+        <p className="text-gray-500 uppercase">No restaurants match your filters.</p>
+      )}
+
     </section>
   );
 }
