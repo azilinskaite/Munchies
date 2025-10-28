@@ -11,8 +11,8 @@ export default async function HomePage() {
 
   return (
     <FiltersProvider>
-      <div className="flex">
-        <div className="w-1/4 min-w-[10rem] max-w-[18rem]">
+      <div className="flex flex-col md:flex-row">
+        <div className="w-[100%] md:w-1/4 md:min-w-[10rem] md:max-w-[18rem]">
           <Sidebar />
         </div>
         <div className="flex-1 w-3/4">
