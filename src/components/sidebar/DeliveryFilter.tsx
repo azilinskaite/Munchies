@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useFilters } from "@/utils/hooks/FiltersContext";
-import FilterButton from "./filter-button";
+import { useFilters } from "@/lib/hooks/filtersContext";
+import FilterButton from "./FilterButton";
 
 const deliveryTimeRanges = [
   { id: "fast", label: "0-10 min", match: (time: number) => time < 10 },

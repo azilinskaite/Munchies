@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useFilters } from "@/utils/hooks/FiltersContext";
-import { getRestaurants, getPriceRangeById } from "@/utils/api/restaurants";
-import FilterButton from "./filter-button";
+import { useFilters } from "@/lib/hooks/filtersContext";
+import { getRestaurants, getPriceRangeById } from "@/lib/api/getRestaurants";
+import FilterButton from "./FilterButton";
 
   interface PriceRange {
     id: string;

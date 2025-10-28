@@ -1,7 +1,7 @@
 import React from "react";
-import StatusBadge from "./status-badge";
-import ArrowButton from "./arrow-button";
-import { getDeliveryRangeLabel } from "../sidebar/filter-delivery";
+import StatusBadge from "./StatusBadge";
+import ArrowButton from "./ArrowButton";
+import { getDeliveryRangeLabel } from "../Sidebar/DeliveryFilter";
 
 interface RestaurantCardProps {
   restaurantName: string;

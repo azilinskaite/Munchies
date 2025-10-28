@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
-import CategoryCard from "./category-card";
-import { useFilters } from "@/utils/hooks/FiltersContext";
+import CategoryCard from "./CategoryCard";
+import { useFilters } from "@/lib/hooks/filtersContext";
 
 export default function Navbar({ filters }: { filters: any }) {
   const { selectedFilters, setSelectedFilters } = useFilters();

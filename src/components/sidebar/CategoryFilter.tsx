@@ -1,8 +1,8 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useFilters } from "@/utils/hooks/FiltersContext";
-import { getRestaurantFilters } from "@/utils/api/restaurants";
-import FilterButton from "./filter-button";
+import { useFilters } from "@/lib/hooks/filtersContext";
+import { getRestaurantFilters } from "@/lib/api/getRestaurants";
+import FilterButton from "./FilterButton";
 
 export default function FilterCategory({ title }: { title: string }) {
   const { selectedFilters, setSelectedFilters } = useFilters();

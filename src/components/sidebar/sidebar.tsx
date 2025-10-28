@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import FilterCategory from "./filter-category";
-import FilterDelivery from "./filter-delivery";
-import FilterPrice from "./filter-price";
+import FilterCategory from "./CategoryFilter";
+import FilterDelivery from "./DeliveryFilter";
+import FilterPrice from "./PriceFilter";
 
 export default function Sidebar() {
 

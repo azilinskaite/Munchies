@@ -1,12 +1,12 @@
 "use client";
-import { useFilters } from "@/utils/hooks/FiltersContext";
+import { useFilters } from "@/lib/hooks/filtersContext";
 import React, { useState, useEffect } from "react";
 import {
   getRestaurantOpenStatus,
   getRestaurants,
-} from "@/utils/api/restaurants";
-import RestaurantCard from "./restaurant-card";
-import { applyFilters } from "@/utils/apply-filters";
+} from "@/lib/api/getRestaurants";
+import RestaurantCard from "./RestaurantCard";
+import { applyFilters } from "@/lib/filters/applyFilters";
 
 type Restaurant = {
   id: string;

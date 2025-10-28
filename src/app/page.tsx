@@ -1,9 +1,9 @@
 import React from "react";
-import Navbar from "@/components/navbar/navbar";
-import RestaurantsList from "@/components/restaurants-list/restaurants-list";
-import Sidebar from "@/components/sidebar/sidebar";
-import { getRestaurants, getRestaurantFilters } from "@/utils/api/restaurants";
-import { FiltersProvider } from "@/utils/hooks/FiltersContext";
+import Navbar from "@/components/Navbar/Navbar";
+import RestaurantsList from "@/components/RestaurantsList/RestaurantsList";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import { getRestaurants, getRestaurantFilters } from "@/lib/api/getRestaurants";
+import { FiltersProvider } from "@/lib/hooks/filtersContext";
 
 export default async function HomePage() {
   const restaurants = await getRestaurants(); 
