@@ -25,8 +25,9 @@ export default function FilterCategory({ title }: { title: string }) {
   }
 
   return (
-    <div className="hidden md:block flex flex-col gap-[0.625rem]">
-      <h5 className="mb-[0.375rem]">{title}</h5>
+    <div className="hidden md:block flex flex-col">
+      <h5 className="mb-2">{title}</h5>
+      <div className="flex flex-col gap-2">
       {categories.map((filter: any) => (
         <FilterButton
           key={filter.id}
@@ -35,6 +36,7 @@ export default function FilterCategory({ title }: { title: string }) {
           isSelected={selectedFilters.includes(`cat-${filter.id}`)}
         />
       ))}
+      </div>
     </div>
   );
 }

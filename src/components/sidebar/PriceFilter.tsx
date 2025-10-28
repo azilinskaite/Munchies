@@ -38,7 +38,7 @@ export default function FilterPrice({title} : {title: string}) {
 
   return (
     <div className="hidden md:block flex flex-col gap-[0.625rem]">
-      <h5 className="mb-[0.375rem]">{title}</h5>
+      <h5 className="mb-2">{title}</h5>
       <div className="flex flex-wrap gap-[0.625rem]">
         {priceRanges.map((price) => (
           <FilterButton

@@ -61,6 +61,9 @@
 
   .hover {
     transform: scale(1.02);
+    border-color: var(--green);
+    border-style: solid;
+    border-width: 0.6px;
     transition-duration: 300ms;
   }
 }
