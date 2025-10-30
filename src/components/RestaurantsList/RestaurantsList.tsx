@@ -92,9 +92,12 @@ export default function RestaurantsList({
       )}
 
       {!loading && !error && restaurants.length === 0 && (
-        <p className="text-gray-500 uppercase">No restaurants match your filters.</p>
+        <p className="text-gray-500 uppercase">
+          No restaurants match your filters.
+        </p>
       )}
 
+      {error && <div className="error text-gray-500 uppercase">{error}</div>}
     </section>
   );
 }

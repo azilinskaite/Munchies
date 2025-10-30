@@ -1,8 +1,8 @@
-const BASE_URL = "https://work-test-web-2024-eze6j4scpq-lz.a.run.app/api"
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 
 export async function getRestaurants(params?: Record<string, string>) {
   try {
-    const res = await fetch(`${BASE_URL}/restaurants`, { cache: "no-store" }
+    const res = await fetch(`${baseUrl}/restaurants`, { cache: "no-store" }
     )
 
     if (!res.ok) {
@@ -24,7 +24,7 @@ export async function getRestaurants(params?: Record<string, string>) {
 
 export async function getPriceRangeById(id: string) {
   try {
-    const res = await fetch(`${BASE_URL}/price-range/${id}`, {
+    const res = await fetch(`${baseUrl}/price-range/${id}`, {
       cache: "no-store",
     });
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
@@ -38,7 +38,7 @@ export async function getPriceRangeById(id: string) {
 export async function getRestaurantFilters() {
   try {
     const res = await fetch(
-      `${BASE_URL}/filter`, { cache: "no-store" }
+      `${baseUrl}/filter`, { cache: "no-store" }
     )
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`)
@@ -58,7 +58,7 @@ export async function getRestaurantFilters() {
 
 export async function getRestaurantOpenStatus(id: string) {
   try {
-    const res = await fetch(`${BASE_URL}/open/${id}`, { cache: "no-store" });
+    const res = await fetch(`${baseUrl}/open/${id}`, { cache: "no-store" });
     if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
     const json = await res.json();
     return json.is_open as boolean;
