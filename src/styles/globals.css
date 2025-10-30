@@ -23,7 +23,7 @@
   }
 
   h1 {
-    @apply text-[2.5rem];
+    font-size: clamp(1.25rem, 0.36rem + 4.5vw, 2.5rem);
   }
 
   h3 {
@@ -61,6 +61,9 @@
 
   .hover {
     transform: scale(1.02);
+    border-color: var(--green);
+    border-style: solid;
+    border-width: 0.6px;
     transition-duration: 300ms;
   }
 }

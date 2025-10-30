@@ -1,14 +1,14 @@
 "use client";
 import React from "react";
-import FilterCategory from "./filter-category";
-import FilterDelivery from "./filter-delivery";
-import FilterPrice from "./filter-price";
+import FilterCategory from "./CategoryFilter";
+import FilterDelivery from "./DeliveryFilter";
+import FilterPrice from "./PriceFilter";
 
 export default function Sidebar() {
 
   return (
-    <aside className="flex flex-col p-[1.5rem] mt-[1rem] align-top gap-[2rem] border border-[var(--stroke)] rounded-lg bg-[var(--white)] shadow-custom-light">
-        <h3>Filter</h3>
+    <aside className="flex flex-col md:p-[1.5rem] md:mt-[1rem] align-top gap-[2rem] md:border md:border-[var(--stroke)] md:rounded-lg md:bg-[var(--white)] md:shadow-custom-light">
+        <h3 className="hidden md:block">Filter</h3>
         <FilterCategory title="Food category"/>
         <FilterDelivery title="Delivery time"/>
         <FilterPrice title="Price range"/>

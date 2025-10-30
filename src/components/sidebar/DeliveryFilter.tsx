@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { useFilters } from "@/utils/hooks/FiltersContext";
-import FilterButton from "./filter-button";
+import { useFilters } from "@/lib/hooks/filtersContext";
+import FilterButton from "./FilterButton";
 
 const deliveryTimeRanges = [
   { id: "fast", label: "0-10 min", match: (time: number) => time < 10 },
@@ -35,9 +35,9 @@ export default function FilterDelivery({title} : {title: string}) {
 }
 
   return (
-    <div className="flex flex-col gap-[0.625rem]">
-      <h5 className="mb-[0.375rem]">{title}</h5>
-      <div className="flex flex-wrap gap-[0.625rem]">
+    <div className="flex flex-col gap-3">
+      <h5>{title}</h5>
+      <div className="flex flex-wrap gap-3">
         {deliveryTimeRanges.map((range) => (
           <FilterButton
             key={range.id}

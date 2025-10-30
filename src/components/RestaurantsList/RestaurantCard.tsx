@@ -1,7 +1,7 @@
 import React from "react";
-import StatusBadge from "./status-badge";
-import ArrowButton from "./arrow-button";
-import { getDeliveryRangeLabel } from "../sidebar/filter-delivery";
+import StatusBadge from "./StatusBadge";
+import ArrowButton from "./ArrowButton";
+import { getDeliveryRangeLabel } from "../Sidebar/DeliveryFilter";
 
 interface RestaurantCardProps {
   restaurantName: string;
@@ -28,7 +28,7 @@ const deliveryLabel = getDeliveryRangeLabel(deliveryTimeMinutes);
 
   return (
     <div
-      className="flex flex-col p-[1rem] gap-[6.875rem] border rounded-lg bg-[var(--white)] justify-between shadow-custom-light relative overflow-hidden
+      className="flex flex-col p-4 gap-[6.875rem] border rounded-lg bg-[var(--white)] justify-between shadow-custom-light relative overflow-hidden
       "
       style={{
         backgroundImage: `url(${imageUrl})`,

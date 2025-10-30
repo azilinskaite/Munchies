@@ -1,6 +1,6 @@
 import React from "react";
 import "../styles/globals.css";
-import Header from "@/components/header/header";
+import Header from "@/components/Header/Header";
 
 export default function RootLayout({
   children,
@@ -9,7 +9,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="p-[2.5rem] pr-0">
+      <body className="p-6 md:p-10 md:pr-0">
         <Header />
         <main>
           {children}

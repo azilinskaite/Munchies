@@ -19,6 +19,3 @@ export default function StatusBadge({ status, color }: StatusBadgeProps) {
     </span>
   );
 }
-
-/* pass status and color as prop depending on api response */
-// div display none if no color is passed
