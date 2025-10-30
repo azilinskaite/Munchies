@@ -17,7 +17,7 @@ export default async function HomePage() {
         </div>
         <div className="flex-1 md:w-3/4">
           <Navbar filters={filters} />
-          <RestaurantsList initialRestaurants={restaurants} />
+          <RestaurantsList initialRestaurants={restaurants.restaurants} />
         </div>
       </div>
     </FiltersProvider>

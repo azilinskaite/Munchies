@@ -15,7 +15,8 @@ export default function FilterCategory({ title }: { title: string }) {
       setLoading(true);
       try {
         const response = await getRestaurantFilters();
-        setCategories(response.data.filters);
+        console.log("Response from getRestaurantFilters:", response);
+        setCategories(response);
       } catch (error) {
         console.error("Error fetching categories:", error);
       } finally {
@@ -46,7 +47,7 @@ export default function FilterCategory({ title }: { title: string }) {
 
       {!loading && (
         <div className="flex flex-col gap-2">
-          {categories.map((filter: any) => (
+          {categories.map((filter) => (
             <FilterButton
               key={filter.id}
               label={filter.name}

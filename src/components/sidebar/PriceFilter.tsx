@@ -4,11 +4,7 @@ import { useFilters } from "@/lib/hooks/filtersContext";
 import { getRestaurants, getPriceRangeById } from "@/lib/api/getRestaurants";
 import FilterButton from "./FilterButton";
 import FilterButtonSkeleton from "./FilterButtonSkeleton";
-
-interface PriceRange {
-  id: string;
-  range: string;
-}
+import { PriceRange } from "@/lib/types/types";
 
 export default function FilterPrice({ title }: { title: string }) {
   const { selectedFilters, setSelectedFilters } = useFilters();
@@ -20,7 +16,7 @@ export default function FilterPrice({ title }: { title: string }) {
       setLoading(true);
 
       try {
-        const restaurants = await getRestaurants();
+        const { restaurants } = await getRestaurants();
         const uniqueIds: string[] = Array.from(
           new Set(restaurants.map((r: any) => r.price_range_id as string))
         );

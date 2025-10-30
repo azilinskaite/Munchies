@@ -8,19 +8,7 @@ import {
 import RestaurantCard from "./RestaurantCard";
 import { applyFilters } from "@/lib/filters/applyFilters";
 import RestaurantCardSkeleton from "./RestaurantCardSkeleton";
-
-type Restaurant = {
-  id: string;
-  name: string;
-  image_url: string;
-  filter_ids: string[];
-  delivery_time_minutes: number;
-  price_range_id: string;
-};
-
-type RestaurantWithStatus = Restaurant & {
-  is_open: boolean;
-};
+import { Restaurant, RestaurantWithStatus } from "@/lib/types/types";
 
 export default function RestaurantsList({
   initialRestaurants,
@@ -39,15 +27,13 @@ export default function RestaurantsList({
       setLoading(true);
 
       try {
-        const allRestaurants = await getRestaurants();
+        const { restaurants: allRestaurants } = await getRestaurants();
 
-        const statusResults: RestaurantWithStatus[] = await Promise.all(
-          allRestaurants.map((r: Restaurant) =>
-            getRestaurantOpenStatus(r.id).then((is_open: boolean) => ({
-              ...r,
-              is_open,
-            }))
-          )
+        const statusResults = await Promise.all(
+          allRestaurants.map(async (r) => {
+            const is_open = await getRestaurantOpenStatus(r.id);
+            return { ...r, is_open };
+          })
         );
 
         const filtered = applyFilters(statusResults, selectedFilters);

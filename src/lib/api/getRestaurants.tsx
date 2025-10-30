@@ -1,73 +1,56 @@
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+import { RestaurantResponse, PriceRange, RestaurantWithStatus, Filter } from "../types/types";
 
-export async function getRestaurants(params?: Record<string, string>) {
+export async function gatewayFetcher<T>(
+  endpoint: string,
+  options?: RequestInit
+): Promise<T> {
   try {
-    const res = await fetch(`${baseUrl}/restaurants`, { cache: "no-store" }
-    )
-
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-
-    const data = await res.json()
-    return data.restaurants;
-    
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error("Fetch Error:", error.message)
-    } else {
-      console.error("Fetch Error:", error)
-    }
-    throw error
-  }
-}
-
-export async function getPriceRangeById(id: string) {
-  try {
-    const res = await fetch(`${baseUrl}/price-range/${id}`, {
+    const response = await fetch(`${baseUrl}/${endpoint}`, {
       cache: "no-store",
+      ...options,
     });
-    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-    return await res.json();
-  } catch (error: any) {
-    console.error("Fetch Error:", error.message || error);
-    throw error;
-  }
-}
 
-export async function getRestaurantFilters() {
-  try {
-    const res = await fetch(
-      `${baseUrl}/filter`, { cache: "no-store" }
-    )
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`)
+    if (!response.ok) {
+      throw new Error(
+        `Networks response was not ok: ${response.status} ${response.statusText}`
+      );
     }
-    const data = await res.json()
-    return { data }
-    
+
+    const data: T = await response.json();
+    return data;
   } catch (error) {
-    if (error instanceof Error) {
-      console.error("Fetch Error:", error.message)
-    } else {
-      console.error("Fetch Error:", error)
-    }
-    throw error
-  }
-}
-
-export async function getRestaurantOpenStatus(id: string) {
-  try {
-    const res = await fetch(`${baseUrl}/open/${id}`, { cache: "no-store" });
-    if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-    const json = await res.json();
-    return json.is_open as boolean;
-  } catch (error: any) {
-    console.error("Fetch Error:", error.message);
+    console.error("Fetch error", error);
     throw error;
   }
 }
 
+export async function getRestaurants(): Promise<RestaurantResponse> {
+  return gatewayFetcher<RestaurantResponse>("restaurants");
+}
 
+export async function getPriceRangeById(id: string): Promise<PriceRange> {
+  return gatewayFetcher<PriceRange>(`price-range/${id}`);
+}
 
+export async function getRestaurantFilters(): Promise<Filter[]> {
+  const { filters } = await gatewayFetcher<{ filters: Filter[] }>("filter");
+  return filters;
+}
 
+export async function getRestaurantOpenStatus(id: string): Promise<boolean> {
+  const { is_open } = await gatewayFetcher<{ is_open: boolean }>(`open/${id}`);
+  return is_open;
+}
+
+// export async function getRestaurantOpenStatus(id: string): Promise<OpenStatus> {
+//   try {
+//     const result = await fetch(`${baseUrl}/open/${id}`, { cache: "no-store" });
+//     if (!result.ok) throw new Error(`HTTP error! Status: ${result.status}`);
+//     const json = await result.json();
+//     return json.is_open as boolean;
+//   } catch (error: any) {
+//     console.error("Fetch Error:", error.message);
+//     throw error;
+//   }
+// }
