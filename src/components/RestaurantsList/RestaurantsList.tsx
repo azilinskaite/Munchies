@@ -44,7 +44,7 @@ export default function RestaurantsList({
           "Sorry, we couldn't load restaurants at the moment. Please try again later."
         );
       } finally {
-        setLoading(false);
+        setTimeout(() => setLoading(false), 500);
       }
     }
 
@@ -57,7 +57,7 @@ export default function RestaurantsList({
 
       {loading && (
         <div className="w-full grid grid-cols-1 gap-4 md:py-4 sm:grid-cols-2 lg:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, i) => (
+          {Array.from({ length: 3 }).map((_, i) => (
             <RestaurantCardSkeleton key={i} />
           ))}
         </div>
