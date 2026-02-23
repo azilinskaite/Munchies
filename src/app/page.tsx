@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "@/components/Navbar/Navbar";
-import RestaurantsList from "@/components/RestaurantsList/RestaurantsList";
-import Sidebar from "@/components/Sidebar/Sidebar";
+import Navbar from "@/components/navbar";
+import RestaurantsList from "@/components/RestaurantsList";
+import Sidebar from "@/components/sidebar";
 import { getRestaurants, getRestaurantFilters } from "@/lib/api/getRestaurants";
 import { FiltersProvider } from "@/lib/hooks/filtersContext";
 

@@ -38,7 +38,7 @@ export default function RestaurantsList({
 
         const filtered = applyFilters(statusResults, selectedFilters);
         setRestaurants(filtered);
-      } catch (err: any) {
+      } catch (err: unknown) {
         console.error("Error fetching restaurants:", err);
         setError(
           "Sorry, we couldn't load restaurants at the moment. Please try again later."
