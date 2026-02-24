@@ -1,24 +1,30 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useFilters } from "@/lib/hooks/filtersContext";
-import { getRestaurants, getPriceRangeById } from "@/lib/api/getRestaurants";
+import { getPriceRangeById } from "@/lib/api/getRestaurants";
 import FilterButton from "./FilterButton";
 import FilterButtonSkeleton from "./FilterButtonSkeleton";
-import { PriceRange } from "@/lib/types/types";
+import { PriceRange, RestaurantWithStatus } from "@/lib/types/types";
 
-export default function FilterPrice({ title }: { title: string }) {
+export default function FilterPrice({
+  title,
+  restaurants,
+}: {
+  title: string;
+  restaurants: RestaurantWithStatus[];
+}) {
   const { selectedFilters, setSelectedFilters } = useFilters();
   const [priceRanges, setPriceRanges] = useState<PriceRange[]>([]);
-  const [loading, setLoading] = useState<Boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     async function fetchPriceRanges() {
       setLoading(true);
+      // if (restaurants.length === 0) return;
 
       try {
-        const { restaurants } = await getRestaurants();
         const uniqueIds: string[] = Array.from(
-          new Set(restaurants.map((r: any) => r.price_range_id as string))
+          new Set(restaurants.map((r: RestaurantWithStatus) => r.price_range_id as string))
         );
         const ranges = await Promise.all(
           uniqueIds.map((id) => getPriceRangeById(id))
@@ -31,7 +37,7 @@ export default function FilterPrice({ title }: { title: string }) {
       }
     }
     fetchPriceRanges();
-  }, []);
+  }, [restaurants]);
 
   function handlePriceToggle(priceId: string) {
     setSelectedFilters((prev) =>

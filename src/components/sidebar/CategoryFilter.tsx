@@ -4,10 +4,11 @@ import { useFilters } from "@/lib/hooks/filtersContext";
 import { getRestaurantFilters } from "@/lib/api/getRestaurants";
 import FilterButton from "./FilterButton";
 import FilterButtonSkeleton from "./FilterButtonSkeleton";
+import { Filter } from "@/lib/types/types";
 
 export default function FilterCategory({ title }: { title: string }) {
   const { selectedFilters, setSelectedFilters } = useFilters();
-  const [categories, setCategories] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Filter[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -15,7 +16,6 @@ export default function FilterCategory({ title }: { title: string }) {
       setLoading(true);
       try {
         const response = await getRestaurantFilters();
-        console.log("Response from getRestaurantFilters:", response);
         setCategories(response);
       } catch (error) {
         console.error("Error fetching categories:", error);

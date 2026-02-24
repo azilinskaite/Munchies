@@ -1,5 +1,5 @@
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-import { RestaurantResponse, PriceRange, RestaurantWithStatus, Filter } from "../types/types";
+import { RestaurantResponse, PriceRange, Filter } from "../types/types";
 
 export async function gatewayFetcher<T>(
   endpoint: string,
