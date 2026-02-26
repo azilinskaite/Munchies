@@ -1,4 +1,6 @@
-export function matchesCategory(r: any, selectedFilters: string[]): boolean {
+import { RestaurantWithStatus } from "@/lib/types/types";
+
+export function matchesCategory(r: RestaurantWithStatus, selectedFilters: string[]): boolean {
   const categoryFilters = selectedFilters.filter((f) => f.startsWith("cat-"));
   if (categoryFilters.length === 0) return true;
   return r.filter_ids.some((fid: string) =>
@@ -6,7 +8,7 @@ export function matchesCategory(r: any, selectedFilters: string[]): boolean {
   );
 }
 
-export function matchesDelivery(r: any, selectedFilters: string[]): boolean {
+export function matchesDelivery(r: RestaurantWithStatus, selectedFilters: string[]): boolean {
   const deliveryFilters = selectedFilters.filter((f) => f.startsWith("deliv-"));
   if (deliveryFilters.length === 0) return true;
 
@@ -21,19 +23,19 @@ export function matchesDelivery(r: any, selectedFilters: string[]): boolean {
   return false;
 }
 
-export function matchesPrice(r: any, selectedFilters: string[]): boolean {
+export function matchesPrice(r: RestaurantWithStatus, selectedFilters: string[]): boolean {
   const priceFilters = selectedFilters.filter((f) => f.startsWith("price-"));
   if (priceFilters.length === 0) return true;
   return priceFilters.includes(`price-${r.price_range_id}`);
 }
 
-export function matchesOpenNow(r: any, selectedFilters: string[]): boolean {
+export function matchesOpenNow(r: RestaurantWithStatus, selectedFilters: string[]): boolean {
   const openFilters = selectedFilters.filter((f) => f === "open-now");
   if (openFilters.length === 0) return true;
   return r.is_open === true; 
 }
 
-export function applyFilters(restaurants: any[], selectedFilters: string[]) {
+export function applyFilters(restaurants: RestaurantWithStatus[], selectedFilters: string[]): RestaurantWithStatus[] {
   if (!selectedFilters || selectedFilters.length === 0) return restaurants;
 
   return restaurants.filter(
